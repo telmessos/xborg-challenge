@@ -28,4 +28,4 @@ describe('envConfig', () => {
     delete process.env.NODE_ENV;
     expect(envConfig()).toEqual(production);
   });
-}); 
+});

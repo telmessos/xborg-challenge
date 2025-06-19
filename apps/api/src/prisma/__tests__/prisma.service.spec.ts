@@ -8,7 +8,9 @@ describe('PrismaService', () => {
   let configService: ConfigService;
 
   beforeEach(async () => {
-    configService = { get: jest.fn().mockReturnValue('test-database-url') } as any;
+    configService = {
+      get: jest.fn().mockReturnValue('test-database-url'),
+    } as any;
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         PrismaService,
@@ -38,7 +40,10 @@ describe('PrismaService', () => {
       if (event === 'beforeExit') cb();
     });
     await prismaService.enableShutdownHooks(app);
-    expect(prismaService.$on).toHaveBeenCalledWith('beforeExit', expect.any(Function));
+    expect(prismaService.$on).toHaveBeenCalledWith(
+      'beforeExit',
+      expect.any(Function),
+    );
     expect(app.close).toHaveBeenCalled();
   });
-}); 
+});
