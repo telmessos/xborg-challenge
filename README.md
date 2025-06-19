@@ -71,3 +71,40 @@ $ yarn format
 ```
 
 ## Submission Documentation...
+
+### Unit Tests Added (API)
+
+#### 1. PrismaService Unit Tests
+- **Location:** `apps/api/src/prisma/__tests__/prisma.service.spec.ts`
+- **What it tests:**
+  - The PrismaService initializes with the correct database URL from configuration.
+  - The `onModuleInit` method calls the database connection logic.
+  - The `enableShutdownHooks` method registers a shutdown hook and closes the app properly.
+- **Why:** Ensures the database service is robust, initializes correctly, and cleans up resources as expected.
+
+#### 2. envConfig Utility Unit Tests
+- **Location:** `apps/api/src/config/env/tests/env-config.spec.ts`
+- **What it tests:**
+  - Returns the correct configuration object when `NODE_ENV` is set to `local`.
+  - Returns the correct configuration object when `NODE_ENV` is set to `production`.
+  - Defaults to production configuration if `NODE_ENV` is not set.
+- **Why:** Ensures the application loads the correct environment settings, which is critical for both development and production reliability.
+
+### How to Run Only These Tests (For Dummies)
+
+1. **Open your terminal.**
+2. **Navigate to the API app directory:**
+   ```bash
+   cd apps/api
+   ```
+3. **Run the specific test files:**
+   ```bash
+   yarn test src/prisma/__tests__/prisma.service.spec.ts src/config/env/tests/env-config.spec.ts
+   ```
+   - This command will ONLY run the tests we created together for `PrismaService` and `envConfig`.
+   - You should see output indicating that these tests have passed (or failed, if there is an issue).
+
+**Tip:** You can always run all tests in the API by simply running `yarn test` from the `apps/api` directory.
+
+---
+If you have any issues or see errors, double-check the file paths and make sure you are in the correct directory (`apps/api`).
